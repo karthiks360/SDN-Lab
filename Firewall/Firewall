@@ -1,0 +1,51 @@
+######################################################################
+## Create Topology
+
+karthik@karthik-virtual-machine:~/SDN Lab$ sudo mn --topo linear,4
+*** Creating network
+*** Adding controller
+*** Adding hosts:
+h1 h2 h3 h4 
+*** Adding switches:
+s1 s2 s3 s4 
+*** Adding links:
+(h1, s1) (h2, s2) (h3, s3) (h4, s4) (s2, s1) (s3, s2) (s4, s3) 
+*** Configuring hosts
+h1 h2 h3 h4 
+*** Starting controller
+c0 
+*** Starting 4 switches
+s1 s2 s3 s4 ...
+*** Starting CLI:
+
+#######################################################################
+
+##Ping all and check reachability to all
+
+mininet> pingall
+h1 -> h2 h2 h4 
+h2 -> h1 h3 h4 
+h3 -> h1 h2 h4 
+h4 -> h1 h2 h3 
+
+#######################################################################
+
+##Take a new terminal window and apply the firewall policy
+
+karthik@karthik-virtual-machine:~/SDN Lab$ sudo ovs-ofctl add-flow s1 priority=100,dl_type=0x800,nw_src=10.0.0.1,nw_dst=10.0.0.3,action=drop
+
+#######################################################################
+
+##Ping all and check reachability to all
+
+mininet> pingall
+*** Ping: testing ping reachability
+h1 -> h2 X h4 
+h2 -> h1 h3 h4 
+h3 -> X h2 h4 
+h4 -> h1 h2 h3 
+*** Results: 16% dropped (10/12 received)
+
+## Observe the reachability after applying the firwall policy
+
+

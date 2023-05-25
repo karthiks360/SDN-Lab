@@ -1,0 +1,41 @@
+###Run the nat.py
+#######################################################################################
+
+karthik@karthik-virtual-machine:~/SDN Lab/Network Address Translation$ sudo python3 nat.py 
+*** Creating network
+*** Adding controller
+*** Adding hosts:
+h1 h2 h3 h4 
+*** Adding switches:
+s1 
+*** Adding links:
+(s1, h1) (s1, h2) (s1, h3) (s1, h4) 
+*** Configuring hosts
+h1 h2 h3 h4 
+*** Starting controller
+c0 
+*** Starting 1 switches
+s1 ...
+*** Waiting for switches to connect
+s1 
+*** Hosts are running and should have internet connectivity
+*** Type 'exit' or control-D to shut down network
+*** Starting CLI:
+
+#######################################################################################
+
+###Check the links
+mininet> links
+s1-eth1<->h1-eth0 (OK OK) 
+s1-eth2<->h2-eth0 (OK OK) 
+s1-eth3<->h3-eth0 (OK OK) 
+s1-eth4<->h4-eth0 (OK OK) 
+nat0-eth0<->s1-eth5 (OK OK) 
+
+#######################################################################################
+
+mininet> xterm h1
+		In xterm>ping 8.8.8.8
+	
+	Check for ICMP packets delivery to confirm its operation
+

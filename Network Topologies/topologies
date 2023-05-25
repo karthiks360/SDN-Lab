@@ -1,0 +1,105 @@
+______________________________________________________________
+
+karthik@karthik-virtual-machine:~$ sudo mn --topo minimal
+*** Creating network
+*** Adding controller
+*** Adding hosts:
+h1 h2 
+*** Adding switches:
+s1 
+*** Adding links:
+(h1, s1) (h2, s1) 
+*** Configuring hosts
+h1 h2 
+*** Starting controller
+c0 
+*** Starting 1 switches
+s1 ...
+*** Starting CLI:
+mininet> net
+h1 h1-eth0:s1-eth1
+h2 h2-eth0:s1-eth2
+s1 lo:  s1-eth1:h1-eth0 s1-eth2:h2-eth0
+c0
+
+______________________________________________________________
+
+karthik@karthik-virtual-machine:~$ sudo mn --topo single,4
+*** Creating network
+*** Adding controller
+*** Adding hosts:
+h1 h2 h3 h4 
+*** Adding switches:
+s1 
+*** Adding links:
+(h1, s1) (h2, s1) (h3, s1) (h4, s1) 
+*** Configuring hosts
+h1 h2 h3 h4 
+*** Starting controller
+c0 
+*** Starting 1 switches
+s1 ...
+*** Starting CLI:
+mininet> net
+h1 h1-eth0:s1-eth1
+h2 h2-eth0:s1-eth2
+h3 h3-eth0:s1-eth3
+h4 h4-eth0:s1-eth4
+s1 lo:  s1-eth1:h1-eth0 s1-eth2:h2-eth0 s1-eth3:h3-eth0 s1-eth4:h4-eth0
+c0
+______________________________________________________________
+
+karthik@karthik-virtual-machine:~$ sudo mn --topo linear,4
+*** Creating network
+*** Adding controller
+*** Adding hosts:
+h1 h2 h3 h4 
+*** Adding switches:
+s1 s2 s3 s4 
+*** Adding links:
+(h1, s1) (h2, s2) (h3, s3) (h4, s4) (s2, s1) (s3, s2) (s4, s3) 
+*** Configuring hosts
+h1 h2 h3 h4 
+*** Starting controller
+c0 
+*** Starting 4 switches
+s1 s2 s3 s4 ...
+*** Starting CLI:
+mininet> net
+h1 h1-eth0:s1-eth1
+h2 h2-eth0:s2-eth1
+h3 h3-eth0:s3-eth1
+h4 h4-eth0:s4-eth1
+s1 lo:  s1-eth1:h1-eth0 s1-eth2:s2-eth2
+s2 lo:  s2-eth1:h2-eth0 s2-eth2:s1-eth2 s2-eth3:s3-eth2
+s3 lo:  s3-eth1:h3-eth0 s3-eth2:s2-eth3 s3-eth3:s4-eth2
+s4 lo:  s4-eth1:h4-eth0 s4-eth2:s3-eth3
+c0
+_____________________________________________________________
+
+karthik@karthik-virtual-machine:~$ sudo mn --topo tree,2
+*** Creating network
+*** Adding controller
+*** Adding hosts:
+h1 h2 h3 h4 
+*** Adding switches:
+s1 s2 s3 
+*** Adding links:
+(s1, s2) (s1, s3) (s2, h1) (s2, h2) (s3, h3) (s3, h4) 
+*** Configuring hosts
+h1 h2 h3 h4 
+*** Starting controller
+c0 
+*** Starting 3 switches
+s1 s2 s3 ...
+*** Starting CLI:
+mininet> net
+h1 h1-eth0:s2-eth1
+h2 h2-eth0:s2-eth2
+h3 h3-eth0:s3-eth1
+h4 h4-eth0:s3-eth2
+s1 lo:  s1-eth1:s2-eth3 s1-eth2:s3-eth3
+s2 lo:  s2-eth1:h1-eth0 s2-eth2:h2-eth0 s2-eth3:s1-eth1
+s3 lo:  s3-eth1:h3-eth0 s3-eth2:h4-eth0 s3-eth3:s1-eth2
+c0
+

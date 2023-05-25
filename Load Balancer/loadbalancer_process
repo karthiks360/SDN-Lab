@@ -1,0 +1,38 @@
+Create topology
+
+karthik@karthik-virtual-machine:~/SDN Lab/loadBal$ sudo mn --topo tree,3
+*** Creating network
+*** Adding controller
+*** Adding hosts:
+h1 h2 h3 h4 h5 h6 h7 h8 
+*** Adding switches:
+s1 s2 s3 s4 s5 s6 s7 
+*** Adding links:
+(s1, s2) (s1, s5) (s2, s3) (s2, s4) (s3, h1) (s3, h2) (s4, h3) (s4, h4) (s5, s6) (s5, s7) (s6, h5) (s6, h6) (s7, h7) (s7, h8) 
+*** Configuring hosts
+h1 h2 h3 h4 h5 h6 h7 h8 
+*** Starting controller
+c0 
+*** Starting 7 switches
+s1 s2 s3 s4 s5 s6 s7 ...
+*** Starting CLI:
+
+mininet> xterm h1 h2 h3 h4 h5
+
+
+######################################################################################
+Here classify 
+
+loadbalancer - h1
+servers - h2,h3,h4
+clients - h5,h6
+
+In xterm windows browse to the respective directories & invoke accordingly
+
+>python3 loadBal.py
+>python3 server.py
+>python3 client.py
+
+Then send request from clients to observe the rounded robin loadbalancer operation
+
+######################################################################################
